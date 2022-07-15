@@ -1,5 +1,19 @@
 {{log 'boons-and-banes-template' this}}
 <form>
+    <div class="effect-list">
+        <button type="button" class="collapsible">Effect</button>
+        <div class="content">
+            <p>Effects</p>
+        </div>
+        <button type="button" class="collapsible">Expiration</button>
+        <div class="content">
+            <p>Expiration</p>
+        </div>
+        <button type="button" class="collapsible">Miscellaneous</button>
+        <div class="content">
+            <p>Miscellaneous</p>
+        </div>
+    </div>
     <p><b>Builder  Active  Name  Description  Effect  Value  Duration  End  On Turn  Delete</b></p>
     <br>
     {{#each boonsnbanes}}
@@ -15,13 +29,13 @@
 
         <input type="checkbox" name="{{id}}.active" data-dtype="Boolean" {{checked active}} title="{{localize "BOONS-AND-BANES.is-active"}}"/>
 
-        <input type="text" value="{{label}}" name="{{id}}.label" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-label"}}"/>
+        <input type="text" value="{{label}}" name="{{id}}.label" data-dtype="String" placeholder="Name" title="{{localize "BOONS-AND-BANES.effect-label"}}"/>
 
         <button type="button" data-action="edit-description" title="{{localize "BOONS-AND-BANES.effect-description"}}"><i class="fas fa-plus"></i></button>
         
-        <input type="text" value="{{effect}}" name="{{id}}.effect" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-coding"}}"/>
+        <input type="text" value="{{effect}}" name="{{id}}.effect" data-dtype="String" placeholder="Effect" title="{{localize "BOONS-AND-BANES.effect-coding"}}"/>
         
-        <input type="text" value="{{value}}" name="{{id}}.value" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-value"}}"/>
+        <input type="text" value="{{value}}" name="{{id}}.value" data-dtype="String" placeholder="Value" title="{{localize "BOONS-AND-BANES.effect-value"}}"/>
 
         <select value="{{endCondition}}" name="{{id}}.endCondition" title="{{localize "BOONS-AND-BANES.end-condition"}}">
         {{#select endCondition}}
@@ -32,7 +46,7 @@
         {{/select}}
         </select>
 
-        <input type="text" value="{{duration}}" name="{{id}}.duration" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-duration"}}"/>
+        <input type="text" value="{{duration}}" name="{{id}}.duration" data-dtype="String" placeholder="" title="{{localize "BOONS-AND-BANES.effect-duration"}}"/>
         
         <select value="{{endsAt}}" name="{{id}}.endsAt" title="{{localize "BOONS-AND-BANES.end-timing"}}">
         {{#select endsAt}}
@@ -56,4 +70,21 @@
   {{/each}}
 
   <button type="button" data-action="create"><i class="fas fa-plus"></i> {{localize "BOONS-AND-BANES.add-effect"}}</button>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+            content.style.display = "none";
+            } else {
+            content.style.display = "block";
+            }
+        });
+        }
+    </script>
 </form>

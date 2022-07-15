@@ -9,3 +9,6 @@ jsconfig.json
 
 # Workspace files for VSCode
 boons-and-banes.code-workspace
+
+# Symbolic link file to foundry.js (for intellisense)
+foundry.js

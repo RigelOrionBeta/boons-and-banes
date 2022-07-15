@@ -1,2 +1,11 @@
 # Lock file
 boons-and-banes.lock
+
+# Node modules
+node_modules/
+
+# JSConfig file (for auto complete)
+jsconfig.json
+
+# Workspace files for VSCode
+boons-and-banes.code-workspace

@@ -1,0 +1,59 @@
+{{log 'boons-and-banes-template' this}}
+<form>
+    <p><b>Builder  Active  Name  Description  Effect  Value  Duration  End  On Turn  Delete</b></p>
+    <br>
+    {{#each boonsnbanes}}
+    <li class="flexrow" data-boons-and-banes-id="{{id}}">
+            
+        <select value="{{effectBuilder}}" name="{{id}}.effectBuilder" title="{{localize "BOONS-AND-BANES.effect-builder"}}">
+        {{#select effectBuilder}}
+            <option value="Builder">Builder</option>
+            <option value="Original">Original</option>
+            <option value="Codings">Codings</option>
+        {{/select}}
+        </select>
+
+        <input type="checkbox" name="{{id}}.active" data-dtype="Boolean" {{checked active}} title="{{localize "BOONS-AND-BANES.is-active"}}"/>
+
+        <input type="text" value="{{label}}" name="{{id}}.label" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-label"}}"/>
+
+        <button type="button" data-action="edit-description" title="{{localize "BOONS-AND-BANES.effect-description"}}"><i class="fas fa-plus"></i></button>
+        
+        <input type="text" value="{{effect}}" name="{{id}}.effect" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-coding"}}"/>
+        
+        <input type="text" value="{{value}}" name="{{id}}.value" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-value"}}"/>
+
+        <select value="{{endCondition}}" name="{{id}}.endCondition" title="{{localize "BOONS-AND-BANES.end-condition"}}">
+        {{#select endCondition}}
+            <option value="Passive">Passive</option>
+            <option value="Duration">Duration</option>
+            <option value="SavingThrow">Saving Throw</option>
+            <option value="DamageTaken">Damage Taken</option>
+        {{/select}}
+        </select>
+
+        <input type="text" value="{{duration}}" name="{{id}}.duration" data-dtype="String" title="{{localize "BOONS-AND-BANES.effect-duration"}}"/>
+        
+        <select value="{{endsAt}}" name="{{id}}.endsAt" title="{{localize "BOONS-AND-BANES.end-timing"}}">
+        {{#select endsAt}}
+            <option value="Beginning">Beginning</option>
+            <option value="End">End</option>
+        {{/select}}
+        </select>
+
+        <select value="{{endsWith}}" name="{{id}}.endsWith" title="{{localize "BOONS-AND-BANES.end-actor"}}">
+        {{#select endsWith}}
+            <option value="Source">Source</option>
+            <option value="Target">Target</option>
+        {{/select}}
+        </select>
+
+    <button type="button"  data-action="delete" class="flex0 boons-and-banes-icon-button" title="{{localize "BOONS-AND-BANES.delete-effect"}}">
+        <i class="fas fa-trash" color = "black"></i>
+    </button>
+    </li>
+    
+  {{/each}}
+
+  <button type="button" data-action="create"><i class="fas fa-plus"></i> {{localize "BOONS-AND-BANES.add-effect"}}</button>
+</form>

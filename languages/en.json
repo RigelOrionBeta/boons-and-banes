@@ -1,4 +1,31 @@
 {
     "BOONS-AND-BANES": {
+        "button-title": "Open Boons and Banes list",
+        "is-active": "If the effect is active",
+        "add-effect": "Add effect",
+        "effect-label": "Name of effect",
+        "delete-effect": "Delete effect",
+        "effect-description": "Edit effect description",
+        "effect-builder": "Pick which way to build your effect. \n\n Builder - Using the Boons and Banes effect builder. \n Original - Using the original Foundry method. \n Codings - Using the Boons and Banes effect codings.",
+        "effect-coding": "Effect coding",
+        "effect-value": "Value associated with the effect",
+        "effect-duration": "Duration of the effect (0 if no duration)",
+        "end-condition": "The condition that must be met to end this effect.\n\n Passive - Effect does not end. Useful for item effects, traits, features, etc. \n Duration - Effect ends after a specified number of rounds have passed. \n Saving Throw - Effect ends with a saving throw. \n Damage Taken - Effect ends when damage is taken. \n Saving Throw - Effect ends with a successful saving throw.",
+        "end-actor": "Whether the effect ends on the source's turn or the target's turn",
+        "end-timing": "Whether the effect ends at the beginning of the turn or end of the turn",
+        "end-save": "What type of save must be made to remove the effect",
+        "end-save-result": "Is the effect removed after a successful or failed save",
+        "settings": {
+            "inject-button": {
+              "Name": "Display Boons and Banes button?",
+              "Hint": "Controls whether or not the Boons and Banes can be opened from the player list."
+            }
+        },
+        "confirms": {
+            "deleteConfirm": {
+              "Title": "Confirm Deletion",
+              "Content": "Are you sure you want to delete this To-Do? This action cannot be undone."
+            }
+          }
     }
 }

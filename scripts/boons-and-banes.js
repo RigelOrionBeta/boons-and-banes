@@ -50,8 +50,11 @@ class BoonsAndBanesData {
         const newBoonAndBane = {
             active: false,
             id: foundry.utils.randomID(16),
+            label: "",
+            description: "",
             userId,
             duration: 0,
+            timeScale: "seconds",
             effect: "",
             icon: "",
             suspended: false,
@@ -118,6 +121,9 @@ class BoonsAndBanesData {
 // Boons and Banes configuration window
 // https://foundryvtt.wiki/en/development/guides/understanding-form-applications
 class BoonsAndBanesConfig extends FormApplication {
+
+  static selectedBoonId = "";
+
   static get defaultOptions() {
     const defaults = super.defaultOptions;
   
@@ -147,8 +153,11 @@ class BoonsAndBanesConfig extends FormApplication {
 
   // Get data for the logged in user.
   getData(options) {
+    BoonsAndBanes.log(false, "getDataCalled.");
+
     return {
-      boonsnbanes: BoonsAndBanesData.getForUser(options.userId)
+      boonsnbanes: BoonsAndBanesData.getForUser(options.userId),
+      selectedBoon: BoonsAndBanesData.getForUser(options.userId)[this.selectedBoonId]
     }
   }
 
@@ -174,12 +183,14 @@ class BoonsAndBanesConfig extends FormApplication {
 
     // handle what happens when the buttons in config window are clicked
     switch (action) {
+
       // Add Effect button
       case 'create': {
         await BoonsAndBanesData.create(this.options.userId);
         this.render();
         break;
       }
+
       // Trash can button
       case 'delete': {
         const confirmed = await Dialog.confirm({
@@ -192,6 +203,13 @@ class BoonsAndBanesConfig extends FormApplication {
           this.render();
         }
 
+        break;
+      }
+
+      case 'select': {
+        BoonsAndBanes.log(false, "BnB ID", boonsAndBanesId);
+        this.selectedBoonId = boonsAndBanesId;
+        this.render();
         break;
       }
       default:
@@ -231,6 +249,12 @@ Hooks.on('renderPlayerList', (playerList, html) => {
 Hooks.once('init', () => {
   BoonsAndBanes.initialize();
 });
+
+Handlebars.registerHelper('getSelected', function( /* dynamic arguments */) {
+  var selected = BoonsAndBanesConfig.getSelectedBoon
+  BoonsAndBanes.log(true, "selected: ", selected);
+  return new Handlebars.SafeString("Missing: "+options.name+"("+args+")")
+})
 
 // Log simple statement
 // BoonsAndBanes.log(true, 'Boons and Banes Loaded!');
